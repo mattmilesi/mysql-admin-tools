@@ -1,0 +1,59 @@
+services:
+    app:
+        build:
+            context: .
+        container_name: mysql-admin-tools-app
+        volumes:
+            - .:/var/www/html
+            - ./database/database.sqlite:/var/lib/mysql-admin-tools/database.sqlite
+        environment:
+            - DB_CONNECTION=sqlite
+            - DB_DATABASE=/var/lib/mysql-admin-tools/database.sqlite
+        depends_on:
+            - target-db
+        working_dir: /var/www/html
+        command: sh -c "php artisan serve --host=0.0.0.0 --port=8000 & php artisan queue:listen --sleep=5 & php artisan reverb:start --debug"
+        ports:
+            - "8000:8000"
+            - "8081:8081"  # for Reverb
+    target-db:
+        container_name: mysql-admin-tools-target-mysql
+        image: 'mysql:8.0'
+        ports:
+            - '${FORWARD_TARGET_DB_PORT:-3307}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${TARGET_DB_ROOT_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${TARGET_DB_DATABASE}'
+            MYSQL_USER: '${TARGET_DB_USERNAME}'
+            MYSQL_PASSWORD: '${TARGET_DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - 'target-mysql:/var/lib/mysql'
+            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+        networks:
+            - default
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${TARGET_DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
+    mailpit:
+        container_name: mysql-admin-tools-mailpit
+        image: 'axllent/mailpit:latest'
+        ports:
+            - '${FORWARD_MAILPIT_PORT:-1026}:1025'
+            - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8026}:8025'
+        networks:
+            - default
+networks:
+    default:
+        driver: bridge
+volumes:
+    sqlite-data:
+        driver: local
+    target-mysql:
+        driver: local

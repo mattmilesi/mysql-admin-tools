@@ -1,0 +1,78 @@
+{
+    "name": "mattmilesi/mysql-admin-tools",
+    "type": "project",
+    "description": "A set of advanced tools for MySQL DB admins.",
+    "keywords": ["laravel", "framework"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "ext-pdo": "*",
+        "mattmilesi/pt-osc-command-generator": "^0.1.0",
+        "laravel/framework": "^12.0",
+        "laravel/reverb": "*",
+        "laravel/tinker": "^2.9"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.0",
+        "phpunit/phpunit": "^11.0",
+        "spatie/laravel-ignition": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "start": "docker-compose up",
+        "rebuild": "docker-compose up --build",
+        "stop": "docker-compose down",
+        "artisan": "docker-compose run app php artisan",
+        "migrate": "docker-compose run app php artisan migrate",
+        "seed": "docker-compose run app php artisan migrate --seed",
+        "queue:listen": "docker-compose run app php artisan queue:listen --sleep=5",
+        "reverb:start": "docker-compose run app php artisan reverb:start",
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        },
+        "process-timeout": 0
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

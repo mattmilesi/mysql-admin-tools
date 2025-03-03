@@ -199,3 +199,20 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+
+   --------------------------------------------------------------------------
+
+   Additional Licensing Information
+
+   This project is licensed under the Apache License, Version 2.0. However,
+   it includes the phpmyadmin/sql-parser library, which is licensed under the
+   GNU General Public License, version 2 or (at your option) any later
+   version.
+
+   To ensure compatibility with the Apache License, Version 2.0, this project
+   considers phpmyadmin/sql-parser to be licensed under GNU General Public
+   License, version 3.0.
+
+   As required by the GPL, the full text of the GNU General Public License,
+   version 3.0, is included in this repository.
