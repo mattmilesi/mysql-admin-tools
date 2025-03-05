@@ -46,6 +46,7 @@ npm run build
 
 ## Roadmap and ideas
 Short term todos:
+- Fix session duration
 - Seed the target DB
 - Have a local running MVP
 - Enable `npm run build` in watch mode

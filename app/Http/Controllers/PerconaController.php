@@ -6,8 +6,8 @@ use App\Jobs\RunSchemaChange;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
-use PtOscCommandGenerator\Generator;
 use PtOscCommandGenerator\Exceptions\ParserException;
+use PtOscCommandGenerator\StatementParser;
 use Throwable;
 
 class PerconaController extends Controller
@@ -15,7 +15,7 @@ class PerconaController extends Controller
     public function show(Request $request): View
     {
         $queries = $request->input('queries', '') ?? '';
-        $generator = new Generator($queries);
+        $generator = new StatementParser($queries);
         $commands = $generator->getCommands();
         return view('percona.percona-index', [
             'queries' => $queries,
@@ -27,7 +27,7 @@ class PerconaController extends Controller
     {
         $queries = $request->input('queries', '') ?? '';
         try {
-            $generator = new Generator($queries);
+            $generator = new StatementParser($queries);
         } catch (ParserException $pe) {
             return [
                 'error' => $pe->getMessage(),
