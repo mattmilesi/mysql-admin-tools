@@ -21,4 +21,5 @@ window.Echo = new Echo({
 window.Echo.private('schema-change')
     .listen('.SchemaChangeProgress', (event) => {
         console.log('Received:', event);
+        document.getElementById('perconaOutput').append(event.message, "\n");
     });

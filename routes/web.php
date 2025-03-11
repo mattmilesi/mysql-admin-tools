@@ -26,7 +26,6 @@ Route::middleware([ExtendSession::class])->group(function () {
         Route::controller(PerconaController::class)->group(function () {
             Route::get('/percona', 'show')->name('percona.show');
             Route::post('/percona', 'show')->name('percona.showWithCommands');
-            //Route::post('/percona/generateCommands', 'generateCommands')->name('percona.generateCommands');
             Route::post('/percona/run', 'runCommands')->name('percona.run');
         });
 

@@ -28,7 +28,7 @@ class RunSchemaChange implements ShouldQueue//, ShouldBeUnique
     {
         log()->info('Executing ' . $this->command);
 
-        $process = new Process(['pt-online-schema-change', '--dry-run']);  // TODO: replace with generated command
+        $process = Process::fromShellCommandline($this->command);
         $process->start();
 
         foreach ($process as $type => $data) {

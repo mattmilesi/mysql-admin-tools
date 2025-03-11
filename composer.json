@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.3",
         "ext-pdo": "*",
-        "mattmilesi/pt-osc-command-generator": "^0.2.0",
+        "mattmilesi/pt-osc-command-generator": "^0.3.1",
         "laravel/framework": "^12.0",
         "laravel/reverb": "*",
         "laravel/tinker": "^2.9"

@@ -46,9 +46,11 @@ npm run build
 
 ## Roadmap and ideas
 Short term todos:
-- Fix session duration
-- Seed the target DB
+- Seed the target DB with cli params
+- Query validation
+- Better frontend
 - Have a local running MVP
+- Fix session duration
 - Enable `npm run build` in watch mode
 - Figure out how to secure the tool in production
 
