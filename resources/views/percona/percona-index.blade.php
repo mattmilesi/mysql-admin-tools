@@ -35,21 +35,28 @@
                             @case('enum')
                                 <select name="{{$name}}">
                                     @foreach ($properties['admitted_values'] as $value => $text)
-                                        <option value="{{$value}}">{{$text}}</option>
+                                        <option
+                                                value="{{$value}}"
+                                                {{ (isset($options[$name]) && $options[$name] === $value) ? 'selected' : '' }}>
+                                            {{$text}}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @break
                             @case('yesno')
                                 <select name="{{$name}}">
-                                    <option value="yes">yes</option>
-                                    <option value="no">no</option>
+                                    <option value="yes" {{ (isset($options[$name]) && $options[$name] === 'yes') ? 'selected' : '' }}>yes</option>
+                                    <option value="no" {{ (isset($options[$name]) && $options[$name] === 'no') ? 'selected' : '' }}>no</option>
                                 </select>
                                 @break
                             @case('flag')
-                                <input name="{{$name}}" type="checkbox">
+                                <select name="{{$name}}">
+                                    <option value="on" {{ (isset($options[$name]) && $options[$name] === 'on') ? 'selected' : '' }}>on</option>
+                                    <option value="off" {{ (isset($options[$name]) && $options[$name] === 'off') ? 'selected' : '' }}>off</option>
+                                </select>
                                 @break
                             @case('string')
-                                <input name="{{$name}}" type="text" value="{{$properties['default_value']}}">
+                                <input name="{{$name}}" type="text" value="{{$options[$name]}}">
                                 @break
                         @endswitch
                     </td>
@@ -87,6 +94,7 @@
             },
             body: JSON.stringify({
                 queries: '{{$queries}}',
+                options: @json($options),
                 execute: execute
             })
         })

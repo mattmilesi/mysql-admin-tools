@@ -21,38 +21,36 @@ class SchemaChangeService
             'type' => 'yesno',
             'yes_option' => Option::ANALYZE_BEFORE_SWAP,
             'no_option' => Option::NO_ANALYZE_BEFORE_SWAP,
-            'default_option' => 'yes',
+            'default_value' => 'yes',
         ],
         Option::CHECK_ALTER => [
             'type' => 'yesno',
             'yes_option' => Option::CHECK_ALTER,
             'no_option' => Option::NO_CHECK_ALTER,
-            'default_option' => 'yes',
+            'default_value' => 'yes',
         ],
         Option::CHECK_FOREIGN_KEYS => [
             'type' => 'yesno',
             'yes_option' => Option::CHECK_FOREIGN_KEYS,
             'no_option' => Option::NO_CHECK_FOREIGN_KEYS,
-            'default_option' => 'yes',
+            'default_value' => 'yes',
         ],
         Option::CHECK_UNIQUE_KEY_CHANGE => [
             'type' => 'yesno',
             'yes_option' => Option::CHECK_UNIQUE_KEY_CHANGE,
             'no_option' => Option::NO_CHECK_UNIQUE_KEY_CHANGE,
-            'default_option' => 'yes',
+            'default_value' => 'yes',
         ],
         Option::DROP_OLD_TABLE => [
             'type' => 'yesno',
             'yes_option' => Option::DROP_OLD_TABLE,
             'no_option' => Option::NO_DROP_OLD_TABLE,
-            'default_option' => 'no',
+            'default_value' => 'no',
         ],
-        /*
-        Option::PRINT => [
+        Option::NULL_TO_NOT_NULL => [
             'type' => 'flag',
-            'default_value' => false,
+            'default_value' => 'off',
         ],
-        */
         Option::MAX_LOAD => [
             'type' => 'string',
             'default_value' => 'Threads_running=25',

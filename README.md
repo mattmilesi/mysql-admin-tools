@@ -46,26 +46,29 @@ npm run build
 
 ## Roadmap and ideas
 Short term todos:
-- Seed the target DB with cli params
-- Query validation
-- Better frontend
-- Have a local running MVP
 - Fix session duration
-- Enable `npm run build` in watch mode
+- Add MFA
+- Have a local running MVP
 - Figure out how to secure the tool in production
+- Clean code moving schema change logic to a service
+- Rename Percona references to generic SchemaChange
+- Seed the target DB with cli params
+- Enable `npm run build` in watch mode
 
 These are the capabilities that this tool aims to cover, plus some nice-to-have ideas:
-- Implement alerts with e-mails or other providers, like Telegram
-- Handle credentials
-- Support for multiple databases
-- Implement audit logs
-- Implement history option for resuming execution
-- Implement pause file option for pausing execution
-- Implement customization of progress
+- Schema change
+  - Implement alerts with e-mails or other providers, like Telegram
+  - Handle credentials
+  - Support for multiple databases
+  - Better frontend
+  - Implement audit logs
+  - Implement history option for resuming execution
+  - Implement pause file option for pausing execution
+  - Implement customization of progress
+  - Support for multiple tools (e.g. gh-ost)
 - Add pt-visual-explain
 - Add "kill processes as root" feature
 - Add pt-show-grants
 - Support for users creation and grants management (?)
 - Add pt-deadlock-logger (?)
 - Add pt-table-usage (?)
-- Move execution to ECS (?)
