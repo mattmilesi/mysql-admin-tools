@@ -37,8 +37,8 @@
 
 <div id="topbar">
     <div id="menu">
-        <b>DB Manager</b>&nbsp;&nbsp;
-        <a href="{{ route('percona.show') }}" class="{{ request()->routeIs('percona.show') || request()->routeIs('percona.showWithCommands') ? 'active' : '' }}">Percona</a>
+        <b>MySQL Admin Tools</b>&nbsp;&nbsp;
+        <a href="{{ route('percona.show') }}" class="{{ request()->routeIs('percona.show') || request()->routeIs('percona.showWithCommands') ? 'active' : '' }}">Schema Change</a>
         &nbsp;|&nbsp;
         <a href="{{ route('usage.show') }}" class="{{ request()->routeIs('usage.show') ? 'active' : '' }}">PK Usage</a>
         <!--&nbsp;|&nbsp;-->

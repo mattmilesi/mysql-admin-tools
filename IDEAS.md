@@ -1,4 +1,4 @@
-# DB Manager
+# MySQL Admin Tools
 
 ## Securing the Percona tool
 

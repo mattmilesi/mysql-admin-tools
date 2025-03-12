@@ -20,7 +20,7 @@
 </style>
 
 <div>
-    <h2>Percona online schema change</h2>
+    <h2>Schema change (via pt-online-schema-change)</h2>
     <form action="{{ route('percona.show') }}" method="post">
         @csrf
         <label for="queries">Queries:</label><br/>

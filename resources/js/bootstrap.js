@@ -48,5 +48,6 @@ window.Echo.private('schema-change')
             }
             node.innerHTML = line;
             document.getElementById('perconaOutput').append(node, '\n');
+            window.scrollTo(0, document.body.scrollHeight);
         });
     });
