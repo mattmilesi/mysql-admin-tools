@@ -11,7 +11,7 @@
         "laravel/reverb": "*",
         "laravel/tinker": "^2.9",
         "mattmilesi/pt-osc-command-generator": "^0.3.1",
-        "spomky-labs/otphp": "*"
+        "spomky-labs/otphp": "^11.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

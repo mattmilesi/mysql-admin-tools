@@ -9,8 +9,10 @@ This project is intended to run in production on a remote machine.
 In order to use it, you need to have a user registered on the DB.
 
 ## Development
-Use docker-compose to run the project. \
-The seeds provide a Test User: _test@example.com_ - _password_.
+Use docker-compose to run the project or the following composer scripts. \
+The seeds provide a Test User: `test@example.com` - `password`. \
+In order to use the MFA (mandatory) you must set it up in your authenticator app.
+Copy the _mfa_secret_ value from the _users_ table in _database/database.sqlite_ as seed for the authenticator and _**voilà, les jeux sont faits**_.
 
 ### Run for development
 Run
@@ -40,24 +42,27 @@ composer seed
 ```
 
 ### Build the frontend
+Currently, if you edit the js or css resources, you must rebuild the assets using:
 ```
 npm run build
 ```
+The plan is to avoid this in a future release.
 
 ## Roadmap and ideas
 Short term todos:
-- Fix session duration
-- Add MFA
 - Have a local running MVP
+- Slack / e-mail / Telegram integration
+  - Notifications for failed logins
+  - Notifications for process start and complete/error
+- New user creation
 - Figure out how to secure the tool in production
 - Clean code moving schema change logic to a service
 - Rename Percona references to generic SchemaChange
-- Seed the target DB with cli params
+- Seed the target DB with cli params (e.g. number of records)
 - Enable `npm run build` in watch mode
 
 These are the capabilities that this tool aims to cover, plus some nice-to-have ideas:
 - Schema change
-  - Implement alerts with e-mails or other providers, like Telegram
   - Handle credentials
   - Support for multiple databases
   - Better frontend

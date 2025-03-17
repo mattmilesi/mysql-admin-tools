@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<style>
+    #random_secret {
+        font-size: 10px;
+        position: absolute;
+        bottom: 0;
+    }
+</style>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,5 +33,8 @@
         @endforeach
     </div>
 @endif
+<div id="random_secret">
+    <pre>Random seed: {{ $random_secret }}</pre>
+</div>
 </body>
 </html>

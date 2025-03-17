@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use OTPHP\TOTP;
+use ParagonIE\ConstantTime\Base32;
 
 class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login');
+        $otp = TOTP::generate();
+        return view('auth.login', [
+            'random_secret' => $otp->getSecret(),
+        ]);
     }
 
     public function login(Request $request)
@@ -18,8 +23,15 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed, store the user in the session
-            $request->session()->regenerate();
-            return redirect()->intended('/'); // Redirect to intended page
+            /** @noinspection PhpUndefinedFieldInspection */
+            $totp = TOTP::createFromSecret(Auth::user()->mfa_secret);
+            if ($totp->verify($request->input('mfa_code'))) {
+                $request->session()->regenerate();
+                return redirect()->intended('/'); // Redirect to intended page
+            }
+            return back()->withErrors([
+                'mfa_code' => 'The provided code is not correct.',
+            ]);
         }
 
         return back()->withErrors([

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use OTPHP\TOTP;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         User::truncate();
 
+        $otp = TOTP::generate();
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => bcrypt('password'),
-            'mfa_secret' => '0000000000000000',
+            'mfa_secret' => $otp->getSecret(),
         ]);
     }
 }
