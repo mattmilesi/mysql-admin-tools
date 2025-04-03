@@ -33,14 +33,6 @@ services:
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
             - default
-        healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '-p${TARGET_DB_PASSWORD}'
-            retries: 3
-            timeout: 5s
     mailpit:
         container_name: mysql-admin-tools-mailpit
         image: 'axllent/mailpit:latest'
