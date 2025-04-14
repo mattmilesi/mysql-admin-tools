@@ -9,7 +9,6 @@
         "ext-pdo": "*",
         "laravel/framework": "^12.0",
         "laravel/reverb": "*",
-        "laravel/slack-notification-channel": "^3.5",
         "laravel/tinker": "^2.9",
         "mattmilesi/pt-osc-command-generator": "^0.3.1",
         "spomky-labs/otphp": "^11.3"
